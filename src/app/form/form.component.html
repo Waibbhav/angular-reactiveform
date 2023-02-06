@@ -1,0 +1,41 @@
+<br><br>
+<form [formGroup]="addForm" (ngSubmit)="dataSubmit()">
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="First name" aria-label="First name" formControlName="fname">
+      <div *ngIf="addForm.get('fname')?.touched">
+        <div *ngIf="addForm.get('fname')?.hasError('required')">*Required field</div>
+        <div *ngIf="addForm.get('fname')?.hasError('minlength')">minimum length 3</div>
+      </div>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" formControlName="lname">
+      <div *ngIf="addForm.get('lname')?.touched">
+        <div *ngIf="addForm.get('lname')?.hasError('required')">*Required field</div>
+        <div *ngIf="addForm.get('lname')?.hasError('minlength')">minimum length 3</div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+    <div *ngIf="addForm.get('email')?.touched">
+      <div *ngIf="addForm.get('email')?.hasError('required')">*Required field</div>
+      <div *ngIf="addForm.get('email')?.hasError('pattern')">*pattern Error</div>
+    </div>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="pass">
+    <div *ngIf="addForm.get('pass')?.touched">
+      <div *ngIf="addForm.get('pass')?.hasError('required')">*Required field</div>
+      <div *ngIf="addForm.get('pass')?.hasError('pattern')">*pattern Error</div>
+    </div>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName>
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!addForm.valid">Submit</button>
+</form>
